@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
 
   def create
     comment = Comment.create(comment_params)
+    @post = comment.post
     redirect_to comment.post
   end
 
