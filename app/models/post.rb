@@ -4,7 +4,7 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :users, through: :comments
 
-  # accepts_nested_attributes_for :categories, reject_if: proc { |attributes| attributes['title'].blank? }
+  accepts_nested_attributes_for :categories
 
   def categories_attributes=(categories_hashes)
     categories_hashes.each do |index, category_attributes|
