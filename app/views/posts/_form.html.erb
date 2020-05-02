@@ -1,1 +1,11 @@
+<%=form_for @post do |f|%>
+    <%=f.text_field :title%>
+    <%=f.text_field :content%>
+    
+    <%= f.collection_check_boxes   :category_ids, Category.all, :id, :name %>
+   <input type="text" name="post[categories_attributes][][name]" id="post_categories_attributes_0_name">
 
+    <%=f.submit "Create Post"%>
+
+
+<%end%>

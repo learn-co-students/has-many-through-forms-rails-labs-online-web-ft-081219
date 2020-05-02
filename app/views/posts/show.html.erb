@@ -1,1 +1,28 @@
+<%=@post.title%>
+<%= @post.content%>
+<%@post.comments.each do |comment|%>
+   <%=comment.user.username%> says: <%=comment.content%>
+<%end%>
 
+<%@post.categories.each do |category|%>
+    <%=category.name%>
+<%end%>
+
+<%@commenters.each do |commenter|%>
+    <%= link_to commenter.username, user_path(commenter) %>
+<%end%>
+
+<%=form_for @comment do |f|%>
+    <%= f.text_field :content%>
+     <%= f.text_field   :user_attributes_username %>    
+
+    <%= f.text_field :user_id, list: "comment_user_id"  %>
+  <datalist id="comment_user_id">
+    <% User.all.each do |user| %>
+      <option value="<%= user.username %>">
+    <% end %>
+  </datalist>
+
+    <%= f.submit "Create Comment"%>
+<%end%>
+<%# fill_in('comment_user_attributes_username', with: 'CoolPerson25') %>
